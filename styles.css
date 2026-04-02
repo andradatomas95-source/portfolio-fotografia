@@ -1,5 +1,5 @@
 /* =========================
-   RESET / BASE
+   1. BASE
 ========================= */
 body {
   margin: 0;
@@ -10,7 +10,7 @@ body {
 }
 
 /* =========================
-   HEADER
+   2. HEADER
 ========================= */
 header {
   position: fixed;
@@ -21,372 +21,15 @@ header {
   z-index: 10;
 }
 
-h1 {
-  margin: 0;
-  font-size: 20px;
-}
-
-/* =========================
-   HERO
-========================= */
-.hero {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  z-index: 5;
-}
-
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-/* TEXTO HERO */
-.hero-text {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  z-index: 6;
-}
-
-.hero-text h2 {
-  font-size: 48px;
-  margin: 0;
-  letter-spacing: 2px;
-}
-
-/* =========================
-   CAROUSEL
-========================= */
-.carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 20px 0;
-}
-
-/* FADE LATERAL */
-.carousel::before,
-.carousel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 120px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.carousel::before {
-  left: 0;
-  background: linear-gradient(to right, #0a0a0a, transparent);
-}
-
-.carousel::after {
-  right: 0;
-  background: linear-gradient(to left, #0a0a0a, transparent);
-}
-
-/* TRACK */
-.track {
-  display: flex;
-  width: max-content;
-  animation: scroll 60s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-/* IMÁGENES */
-.track img {
-  height: 80vh;
-  width: auto;
-  object-fit: contain;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.track img:hover {
-  transform: scale(1.1);
-}
-
-/* PAUSA */
-.carousel:hover .track {
-  animation-play-state: paused;
-}
-
-/* ANIMACIÓN */
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* =========================
-   OVERLAY
-========================= */
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-#overlay img {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-/* =========================
-   REDES
-========================= */
-.social {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
-}
-
-.social a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-  opacity: 0.7;
-  transition: 0.3s;
-}
-
-.social a:hover {
-  opacity: 1;
-}
-
-.social img {
-  width: 20px;
-  height: 20px;
-  filter: invert(1);
-}
-
-/* =========================
-   CURSOR PERSONALIZADO
-========================= */
-.cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-  transition: transform 0.15s ease, opacity 0.2s;
-}
-
-.cursor.active {
-  transform: translate(-50%, -50%) scale(2);
-  opacity: 0.6;
-}
-/* =========================
-   3. HEADER
-========================= */
-header {
-  position: fixed;
-  width: 100%;
-  padding: 20px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
-  z-index: 10;
-}
-
-/* =========================
-   4. HERO
-========================= */
-.hero {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  z-index: 5;
-}
-
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-/* TEXTO HERO */
-.hero-text {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  z-index: 6;
-}
-
-.hero-text h2 {
-  font-size: 48px;
-  margin: 0;
-  letter-spacing: 2px;
-}
-
-/* =========================
-   5. CAROUSEL
-========================= */
-.carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 20px 0;
-}
-
-/* FADE LATERAL */
-.carousel::before,
-.carousel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 120px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.carousel::before {
-  left: 0;
-  background: linear-gradient(to right, #0a0a0a, transparent);
-}
-
-.carousel::after {
-  right: 0;
-  background: linear-gradient(to left, #0a0a0a, transparent);
-}
-
-/* TRACK */
-.track {
-  display: flex;
-  width: max-content;
-}
-
-/* =========================
-   6. IMÁGENES / INTERACCIONES
-========================= */
-.track img {
-  transition: transform 0.4s ease, filter 0.4s;
-  cursor: pointer;
-}
-
-.track img:hover {
-  transform: scale(1.15);
-  filter: brightness(1.2);
-}
-
-/* CLICK ZOOM */
-.track img.active {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
-  z-index: 1000;
-  cursor: zoom-out;
-}
-
-/* =========================
-   7. ANIMACIONES
-========================= */
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* =========================
-   8. OVERLAY
-========================= */
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-#overlay img {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-/* =========================
-   9. REDES
-========================= */
-.social {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
-}
-
-.social a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-  opacity: 0.7;
-  transition: 0.3s;
-}
-
-.social a:hover {
-  opacity: 1;
-}
-
-.social img {
-  width: 20px;
-  height: 20px;
-  filter: invert(1);
-}
-
-/* =========================
-   10. CURSOR PERSONALIZADO
-========================= */
-.cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-  transition: transform 0.15s ease, opacity 0.2s;
-}
-
-.cursor.active {
-  transform: translate(-50%, -50%) scale(2);
-  opacity: 0.6;
-}
 .logo {
+  margin: 0;
   font-size: 28px;
   letter-spacing: 6px;
   font-weight: 200;
   text-transform: uppercase;
 }
 
-/* cursor parpadeo */
+/* cursor typing */
 .logo::after {
   content: "|";
   animation: blink 1s infinite;
@@ -396,15 +39,93 @@ header {
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
 }
-.track img {
-  filter: grayscale(100%);
-  transition: all 0.4s ease;
+
+/* =========================
+   3. HERO
+========================= */
+.hero {
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
-.track img:hover {
-  filter: grayscale(0%);
-  transform: scale(1.15);
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
+
+.hero-text {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+}
+
+.hero-text h2 {
+  font-size: 48px;
+  letter-spacing: 2px;
+}
+
+/* =========================
+   4. CAROUSEL
+========================= */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+/* fade lateral */
+.carousel::before,
+.carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carousel::before {
+  left: 0;
+  background: linear-gradient(to right, #0a0a0a, transparent);
+}
+
+.carousel::after {
+  right: 0;
+  background: linear-gradient(to left, #0a0a0a, transparent);
+}
+
+/* track */
+.track {
+  display: flex;
+  width: max-content;
+}
+
+/* =========================
+   5. IMÁGENES (TODO JUNTO)
+========================= */
+.track img {
+  height: 80vh;
+  width: auto;
+  object-fit: contain;
+  margin-right: 10px;
+  cursor: pointer;
+
+  /* estilo */
+  filter: grayscale(100%);
+  transition: transform 0.4s ease, filter 0.4s;
+}
+
+/* hover */
+.track img:hover {
+  transform: scale(1.15);
+  filter: grayscale(0%);
+}
+
+/* zoom */
 .track img.zoomed {
   position: fixed;
   top: 50%;
@@ -412,10 +133,52 @@ header {
   transform: translate(-50%, -50%) scale(1.6);
   z-index: 1000;
   filter: grayscale(0%);
-  cursor: zoom-out;
 }
 
-/* fondo oscuro cuando hace zoom */
-.track img.zoomed::before {
-  content: "";
+/* =========================
+   6. REDES
+========================= */
+.social {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.social a:hover {
+  opacity: 1;
+}
+
+.social img {
+  width: 20px;
+  filter: invert(1);
+}
+
+/* =========================
+   7. CURSOR
+========================= */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.cursor.active {
+  transform: translate(-50%, -50%) scale(2);
 }
