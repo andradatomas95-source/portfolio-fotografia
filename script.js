@@ -40,46 +40,42 @@ document.addEventListener("mousemove", (e) => {
   cursor.style.top = e.clientY + "px";
 });
 
-// cursor activo en hover
+// zoom cursor
 images.forEach(img => {
   img.addEventListener("mouseenter", () => cursor.classList.add("active"));
   img.addEventListener("mouseleave", () => cursor.classList.remove("active"));
 });
 
 // =========================
-// 5. CONTROL DE INTERACCIÓN
+// 5. SCROLL CON RUEDA → CAROUSEL (PRO)
 // =========================
-let isHovering = false;
-let isDragging = false;
-
-// hover del carrusel
-carousel.addEventListener("mouseenter", () => isHovering = true);
-carousel.addEventListener("mouseleave", () => isHovering = false);
-
-// =========================
-// 6. MOVIMIENTO CON CURSOR
-// =========================
-let mouseX = 0;
+let targetX = 0;
 let currentX = 0;
 
-document.addEventListener("mousemove", (e) => {
-  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+carousel.addEventListener("wheel", (e) => {
+  e.preventDefault();
+
+  const speed = 1.5;
+  targetX -= e.deltaY * speed;
+
+  // límites (para no perder las fotos)
+  const maxScroll = 0;
+  const minScroll = -track.scrollWidth + window.innerWidth;
+
+  if (targetX > maxScroll) targetX = maxScroll;
+  if (targetX < minScroll) targetX = minScroll;
 });
 
-function animate() {
-
-  // 🔥 SOLO se mueve si NO estás interactuando
-  if (!isHovering && !isDragging) {
-    currentX += (mouseX * 80 - currentX) * 0.05;
-    track.style.transform = `translateX(${currentX}px)`;
-  }
-
-  requestAnimationFrame(animate);
+// animación suave
+function smoothScroll() {
+  currentX += (targetX - currentX) * 0.08;
+  track.style.transform = `translateX(${currentX}px)`;
+  requestAnimationFrame(smoothScroll);
 }
-animate();
+smoothScroll();
 
 // =========================
-// 7. CLICK → ZOOM
+// 6. CLICK → ZOOM
 // =========================
 images.forEach(img => {
   img.addEventListener("click", () => {
@@ -94,38 +90,4 @@ images.forEach(img => {
       document.body.style.overflow = "auto";
     }
   });
-});
-
-// =========================
-// 8. DRAG CAROUSEL (PRO)
-// =========================
-let startX;
-let scrollStart;
-
-carousel.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  startX = e.pageX;
-  scrollStart = currentX;
-  carousel.style.cursor = "grabbing";
-});
-
-carousel.addEventListener("mouseup", () => {
-  isDragging = false;
-  carousel.style.cursor = "grab";
-});
-
-carousel.addEventListener("mouseleave", () => {
-  isDragging = false;
-  carousel.style.cursor = "grab";
-});
-
-carousel.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-
-  e.preventDefault();
-
-  const walk = (e.pageX - startX) * 2; // sensibilidad
-  currentX = scrollStart + walk;
-
-  track.style.transform = `translateX(${currentX}px)`;
 });
