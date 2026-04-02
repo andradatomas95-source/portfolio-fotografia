@@ -5,6 +5,7 @@ const images = document.querySelectorAll(".track img");
 const heroImg = document.querySelector(".hero img");
 const cursor = document.querySelector(".cursor");
 const track = document.querySelector(".track");
+const carousel = document.querySelector(".carousel");
 const typingElement = document.getElementById("typing");
 
 // =========================
@@ -17,7 +18,7 @@ function typeWriter() {
   if (i < text.length) {
     typingElement.innerHTML += text.charAt(i);
     i++;
-    setTimeout(typeWriter, 80);
+    setTimeout(typeWriter, 60);
   }
 }
 typeWriter();
@@ -39,14 +40,24 @@ document.addEventListener("mousemove", (e) => {
   cursor.style.top = e.clientY + "px";
 });
 
-// zoom cursor
+// cursor activo en hover
 images.forEach(img => {
   img.addEventListener("mouseenter", () => cursor.classList.add("active"));
   img.addEventListener("mouseleave", () => cursor.classList.remove("active"));
 });
 
 // =========================
-// 5. CAROUSEL CON CURSOR
+// 5. CONTROL DE INTERACCIÓN
+// =========================
+let isHovering = false;
+let isDragging = false;
+
+// hover del carrusel
+carousel.addEventListener("mouseenter", () => isHovering = true);
+carousel.addEventListener("mouseleave", () => isHovering = false);
+
+// =========================
+// 6. MOVIMIENTO CON CURSOR
 // =========================
 let mouseX = 0;
 let currentX = 0;
@@ -56,20 +67,24 @@ document.addEventListener("mousemove", (e) => {
 });
 
 function animate() {
-  currentX += (mouseX * 80 - currentX) * 0.05;
-  track.style.transform = `translateX(${currentX}px)`;
+
+  // 🔥 SOLO se mueve si NO estás interactuando
+  if (!isHovering && !isDragging) {
+    currentX += (mouseX * 80 - currentX) * 0.05;
+    track.style.transform = `translateX(${currentX}px)`;
+  }
+
   requestAnimationFrame(animate);
 }
 animate();
 
 // =========================
-// 6. CLICK → ZOOM
+// 7. CLICK → ZOOM
 // =========================
 images.forEach(img => {
   img.addEventListener("click", () => {
     const isActive = img.classList.contains("zoomed");
 
-    // resetear todas
     images.forEach(i => i.classList.remove("zoomed"));
 
     if (!isActive) {
@@ -80,42 +95,37 @@ images.forEach(img => {
     }
   });
 });
+
 // =========================
-// DRAG CAROUSEL (PRO)
+// 8. DRAG CAROUSEL (PRO)
 // =========================
-let isDown = false;
 let startX;
-let scrollLeft = 0;
+let scrollStart;
 
-const carousel = document.querySelector(".carousel");
-
-// mouse down
 carousel.addEventListener("mousedown", (e) => {
-  isDown = true;
+  isDragging = true;
   startX = e.pageX;
-  scrollLeft = currentX;
+  scrollStart = currentX;
   carousel.style.cursor = "grabbing";
 });
 
-// mouse leave / up
-carousel.addEventListener("mouseleave", () => {
-  isDown = false;
-  carousel.style.cursor = "grab";
-});
-
 carousel.addEventListener("mouseup", () => {
-  isDown = false;
+  isDragging = false;
   carousel.style.cursor = "grab";
 });
 
-// mover
+carousel.addEventListener("mouseleave", () => {
+  isDragging = false;
+  carousel.style.cursor = "grab";
+});
+
 carousel.addEventListener("mousemove", (e) => {
-  if (!isDown) return;
+  if (!isDragging) return;
 
   e.preventDefault();
-  const x = e.pageX;
-  const walk = (x - startX) * 1.5;
 
-  currentX = scrollLeft + walk;
+  const walk = (e.pageX - startX) * 2; // sensibilidad
+  currentX = scrollStart + walk;
+
   track.style.transform = `translateX(${currentX}px)`;
 });
