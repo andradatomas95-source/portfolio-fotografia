@@ -92,3 +92,10 @@ images.forEach(img => {
     }
   });
 });
+const overlay = document.getElementById("overlay");
+
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    overlay.style.display = img.classList.contains("zoomed") ? "none" : "flex";
+  });
+});
