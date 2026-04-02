@@ -1,36 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tomás Andrada - Fotografía</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
 
 <header>
-  <h1>SHOTS BY TOTO</h1>
+  <h1>Tomás Andrada</h1>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <img src="foto1.jpg">
+  <img src="foto1.jpg" alt="foto principal">
   <div class="hero-text">
-    <h2>CAPTURING<br>THE GAME</h2>
+    <h2>FOTOGRAFÍA DEPORTIVA</h2>
   </div>
 </section>
 
-<!-- PROYECTOS -->
-<section class="projects">
-  <div class="project">
-    <img src="foto2.jpg">
-    <h3>FÚTBOL</h3>
-  </div>
-
-  <div class="project">
-    <img src="foto3.jpg">
-    <h3>ACCIÓN</h3>
-  </div>
-
-  <div class="project">
-    <img src="foto4.jpg">
-    <h3>EMOCIÓN</h3>
-  </div>
-</section>
-
-<!-- CARRUSEL -->
+<!-- PORTFOLIO -->
 <section class="portfolio">
   <div class="carousel">
     <div class="track">
@@ -42,7 +31,7 @@
       <img src="foto5.jpg">
       <img src="foto6.jpg">
 
-      <!-- duplicadas -->
+      <!-- duplicadas para loop -->
       <img src="foto1.jpg">
       <img src="foto2.jpg">
       <img src="foto3.jpg">
@@ -54,6 +43,11 @@
   </div>
 </section>
 
+<!-- OVERLAY -->
+<div id="overlay">
+  <img id="overlay-img">
+</div>
+
 <!-- REDES -->
 <footer class="social">
   <a href="https://instagram.com/shotsbytoto" target="_blank">
@@ -62,8 +56,10 @@
   </a>
 </footer>
 
+<!-- CURSOR -->
 <div class="cursor"></div>
 
 <script src="script.js"></script>
 
 </body>
+</html>
