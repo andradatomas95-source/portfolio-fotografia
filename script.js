@@ -10,7 +10,7 @@ const typingElement = document.getElementById("typing");
 // =========================
 // 2. TYPEWRITER
 // =========================
-const text = "TOMAS ANDRADA";
+const text = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
 let i = 0;
 
 function typeWriter() {
