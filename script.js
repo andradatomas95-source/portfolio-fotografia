@@ -48,3 +48,16 @@ window.addEventListener("scroll", () => {
 
   track.style.animationDuration = speed + "s";
 });
+// animación proyectos
+const projects = document.querySelectorAll(".project");
+
+window.addEventListener("scroll", () => {
+  projects.forEach(p => {
+    let rect = p.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight - 100) {
+      p.style.opacity = 1;
+      p.style.transform = "translateY(0)";
+    }
+  });
+});
