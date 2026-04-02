@@ -4,94 +4,12 @@
   <meta charset="UTF-8">
   <title>TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* ===== HEADER CENTRADO ===== */
-    header {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px 0;
-    }
-    .logo {
-      text-align: center;
-    }
-
-    /* ===== HERO ===== */
-    .hero img {
-      width: 100%;
-      display: block;
-    }
-
-    /* ===== PORTFOLIO ===== */
-    .portfolio {
-      padding: 40px 0;
-      text-align: center;
-    }
-    .track img {
-      width: 150px;
-      margin: 10px;
-      cursor: pointer;
-      transition: transform 0.3s;
-      border-radius: 8px;
-    }
-    .track img:hover {
-      transform: scale(1.05);
-    }
-
-    /* ===== OVERLAY ===== */
-    #overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8); /* página oscura al 80% */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s;
-      z-index: 1000;
-    }
-    #overlay img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-    #overlay.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* ===== FOOTER REDES CENTRADAS ===== */
-    footer.social {
-      text-align: center;
-      padding: 20px 0;
-    }
-    footer.social a {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #000; /* color del texto */
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    footer.social a img {
-      width: 28px; /* icono más grande */
-      height: 28px;
-      filter: none; /* que se vea en color original */
-    }
-  </style>
 </head>
 <body>
 
 <header>
   <h1 class="logo">
-    <span id="typing"></span>
+    <span id="typing">TOMÁS ANDRADA</span>
   </h1>
 </header>
 
@@ -104,30 +22,22 @@
 <section class="portfolio">
   <div class="carousel">
     <div class="track">
-
-      <img src="foto1.jpg" alt="foto1">
-      <img src="foto2.jpg" alt="foto2">
-      <img src="foto3.jpg" alt="foto3">
-      <img src="foto4.jpg" alt="foto4">
-      <img src="foto5.jpg" alt="foto5">
-      <img src="foto6.jpg" alt="foto6">
-
+      <img src="foto1.jpg" alt="">
+      <img src="foto2.jpg" alt="">
+      <img src="foto3.jpg" alt="">
+      <img src="foto4.jpg" alt="">
+      <img src="foto5.jpg" alt="">
+      <img src="foto6.jpg" alt="">
       <!-- duplicadas para loop -->
-      <img src="foto1.jpg" alt="foto1">
-      <img src="foto2.jpg" alt="foto2">
-      <img src="foto3.jpg" alt="foto3">
-      <img src="foto4.jpg" alt="foto4">
-      <img src="foto5.jpg" alt="foto5">
-      <img src="foto6.jpg" alt="foto6">
-
+      <img src="foto1.jpg" alt="">
+      <img src="foto2.jpg" alt="">
+      <img src="foto3.jpg" alt="">
+      <img src="foto4.jpg" alt="">
+      <img src="foto5.jpg" alt="">
+      <img src="foto6.jpg" alt="">
     </div>
   </div>
 </section>
-
-<!-- OVERLAY -->
-<div id="overlay">
-  <img id="overlay-img" src="">
-</div>
 
 <!-- REDES -->
 <footer class="social">
@@ -140,36 +50,7 @@
 <!-- CURSOR -->
 <div class="cursor"></div>
 
-<script>
-  // ===== TYPEWRITER =====
-  const text = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
-  const typingEl = document.getElementById("typing");
-  let i = 0;
-  function typeWriter() {
-    if (i < text.length) {
-      typingEl.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, 100);
-    }
-  }
-  typeWriter();
-
-  // ===== OVERLAY CLICK =====
-  const overlay = document.getElementById("overlay");
-  const overlayImg = document.getElementById("overlay-img");
-  const images = document.querySelectorAll(".track img");
-
-  images.forEach(img => {
-    img.addEventListener("click", () => {
-      overlayImg.src = img.src;
-      overlay.classList.add("show");
-    });
-  });
-
-  overlay.addEventListener("click", () => {
-    overlay.classList.remove("show");
-  });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
