@@ -1,196 +1,45 @@
-/* =========================
-   RESET / BASE
-========================= */
-body {
-  margin: 0;
-  background: #0a0a0a;
-  color: white;
-  font-family: Arial, sans-serif;
-  cursor: none;
+/* PROYECTOS */
+.projects {
+  display: flex;
+  flex-direction: column;
 }
 
-/* =========================
-   HEADER
-========================= */
-header {
-  position: fixed;
-  width: 100%;
-  padding: 20px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
-  z-index: 10;
+.project {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
 }
 
-h1 {
-  margin: 0;
-  font-size: 20px;
-}
-
-/* =========================
-   HERO
-========================= */
-.hero {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  z-index: 5;
-}
-
-.hero img {
+.project img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  transition: transform 0.6s ease;
 }
 
-/* TEXTO HERO */
-.hero-text {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  z-index: 6;
-}
-
-.hero-text h2 {
-  font-size: 48px;
-  margin: 0;
-  letter-spacing: 2px;
-}
-
-/* =========================
-   CAROUSEL
-========================= */
-.carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 20px 0;
-}
-
-/* FADE LATERAL */
-.carousel::before,
-.carousel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 120px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.carousel::before {
-  left: 0;
-  background: linear-gradient(to right, #0a0a0a, transparent);
-}
-
-.carousel::after {
-  right: 0;
-  background: linear-gradient(to left, #0a0a0a, transparent);
-}
-
-/* TRACK */
-.track {
-  display: flex;
-  width: max-content;
-  animation: scroll 60s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-/* IMÁGENES */
-.track img {
-  height: 80vh;
-  width: auto;
-  object-fit: contain;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.track img:hover {
+.project:hover img {
   transform: scale(1.1);
 }
 
-/* PAUSA */
-.carousel:hover .track {
-  animation-play-state: paused;
+.project h3 {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 40px;
 }
 
-/* ANIMACIÓN */
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+/* HERO MEJORADO */
+.hero-text h2 {
+  font-size: 64px;
+  line-height: 0.9;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
 }
 
-/* =========================
-   OVERLAY
-========================= */
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-#overlay img {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-/* =========================
-   REDES
-========================= */
-.social {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
-}
-
-.social a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-  opacity: 0.7;
-  transition: 0.3s;
-}
-
-.social a:hover {
-  opacity: 1;
-}
-
-.social img {
-  width: 20px;
-  height: 20px;
-  filter: invert(1);
-}
-
-/* =========================
-   CURSOR PERSONALIZADO
-========================= */
-.cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-  transition: transform 0.15s ease, opacity 0.2s;
-}
-
-.cursor.active {
-  transform: translate(-50%, -50%) scale(2);
-  opacity: 0.6;
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
