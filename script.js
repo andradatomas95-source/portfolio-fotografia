@@ -23,7 +23,20 @@ window.addEventListener("scroll", () => {
 
   hero.style.opacity = opacity;
 });
+let mouseX = 0;
+let currentX = 0;
 
+document.addEventListener("mousemove", (e) => {
+  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+});
+
+function animate() {
+  currentX += (mouseX * 80 - currentX) * 0.05;
+  document.querySelector(".track").style.transform = `translateX(${currentX}px)`;
+  requestAnimationFrame(animate);
+}
+
+animate();
 // cursor
 const cursor = document.querySelector(".cursor");
 
