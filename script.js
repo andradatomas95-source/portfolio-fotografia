@@ -48,3 +48,19 @@ window.addEventListener("scroll", () => {
 
   track.style.animationDuration = speed + "s";
 });
+const track = document.querySelector(".track");
+
+let mouseX = 0;
+let currentX = 0;
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+});
+
+function animate() {
+  currentX += (mouseX * 50 - currentX) * 0.05;
+  track.style.transform = `translateX(${currentX}px)`;
+  requestAnimationFrame(animate);
+}
+
+animate();
