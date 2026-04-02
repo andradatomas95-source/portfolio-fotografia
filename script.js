@@ -77,17 +77,17 @@ smoothScroll();
 // =========================
 // 6. CLICK → ZOOM
 // =========================
+const images = document.querySelectorAll(".track img");
+
 images.forEach(img => {
   img.addEventListener("click", () => {
-    const isActive = img.classList.contains("zoomed");
-
-    images.forEach(i => i.classList.remove("zoomed"));
-
-    if (!isActive) {
-      img.classList.add("zoomed");
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    img.classList.add("zoomed");
   });
+});
+
+document.addEventListener("click", e => {
+  const zoomed = document.querySelector(".track img.zoomed");
+  if (zoomed && !zoomed.contains(e.target)) {
+    zoomed.classList.remove("zoomed");
+  }
 });
