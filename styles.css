@@ -7,7 +7,7 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   cursor: none;
-  overflow-x: hidden; /* evita scroll horizontal no deseado */
+  overflow-x: hidden;
 }
 
 /* =========================
@@ -22,7 +22,7 @@ header {
   z-index: 10;
 
   display: flex;
-  justify-content: center; /* centra h1 horizontal */
+  justify-content: center;
   align-items: center;
 }
 
@@ -35,15 +35,14 @@ header {
   text-align: center;
 }
 
-/* cursor typing */
 .logo::after {
   content: "|";
   animation: blink 1s infinite;
 }
 
 @keyframes blink {
-  0%,50%,100% { opacity: 1; }
-  25%,75% { opacity: 0; }
+  0%,50%,100%{opacity:1;}
+  25%,75%{opacity:0;}
 }
 
 /* =========================
@@ -53,6 +52,7 @@ header {
   position: sticky;
   top: 0;
   height: 100vh;
+  transition: opacity 0.5s ease;
 }
 
 .hero img {
@@ -67,14 +67,13 @@ header {
 ========================= */
 .carousel {
   position: relative;
-  overflow-x: auto; /* permite scroll horizontal */
+  overflow-x: auto;
   overflow-y: hidden;
   padding: 20px 0;
   white-space: nowrap;
-  scroll-behavior: smooth; /* scroll suave */
+  scroll-behavior: smooth;
 }
 
-/* fade lateral */
 .carousel::before,
 .carousel::after {
   content: "";
@@ -96,17 +95,16 @@ header {
   background: linear-gradient(to left, #0a0a0a, transparent);
 }
 
-/* track */
 .track {
   display: flex;
   width: max-content;
 }
 
 /* =========================
-   5. IMÁGENES
+   5. IMÁGENES (Miniaturas grandes)
 ========================= */
 .track img {
-  height: 80vh;
+  height: 160vh;
   width: auto;
   object-fit: contain;
   margin-right: 10px;
@@ -121,7 +119,6 @@ header {
   filter: grayscale(0%);
 }
 
-/* overlay zoom */
 .track img.zoomed {
   position: fixed;
   top: 50%;
@@ -138,7 +135,7 @@ header {
 .social {
   position: fixed;
   bottom: 20px;
-  left: 50%;           /* centrado horizontal */
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 12px;
@@ -160,9 +157,9 @@ header {
 }
 
 .social img {
-  width: 28px; /* más grande */
+  width: 28px;
   height: 28px;
-  filter: none; /* color original Instagram */
+  filter: none;
 }
 
 /* =========================
