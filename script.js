@@ -64,3 +64,10 @@ function animate() {
 }
 
 animate();
+const images = document.querySelectorAll(".track img");
+
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    img.classList.toggle("active");
+  });
+});
