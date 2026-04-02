@@ -1,5 +1,5 @@
 /* =========================
-   RESET / BASE
+   1. RESET / BASE
 ========================= */
 body {
   margin: 0;
@@ -10,7 +10,22 @@ body {
 }
 
 /* =========================
-   HEADER
+   2. TIPOGRAFÍA / BRANDING
+========================= */
+h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.logo {
+  font-size: 18px;
+  letter-spacing: 3px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+/* =========================
+   3. HEADER
 ========================= */
 header {
   position: fixed;
@@ -21,13 +36,8 @@ header {
   z-index: 10;
 }
 
-h1 {
-  margin: 0;
-  font-size: 20px;
-}
-
 /* =========================
-   HERO
+   4. HERO
 ========================= */
 .hero {
   position: sticky;
@@ -58,7 +68,7 @@ h1 {
 }
 
 /* =========================
-   CAROUSEL
+   5. CAROUSEL
 ========================= */
 .carousel {
   position: relative;
@@ -93,11 +103,14 @@ h1 {
 .track {
   display: flex;
   width: max-content;
- }
+}
 
-/* IMÁGENES */
+/* =========================
+   6. IMÁGENES / INTERACCIONES
+========================= */
 .track img {
   transition: transform 0.4s ease, filter 0.4s;
+  cursor: pointer;
 }
 
 .track img:hover {
@@ -105,19 +118,26 @@ h1 {
   filter: brightness(1.2);
 }
 
-/* PAUSA */
-.carousel:hover .track {
-  animation-play-state: paused;
+/* CLICK ZOOM */
+.track img.active {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 1000;
+  cursor: zoom-out;
 }
 
-/* ANIMACIÓN */
+/* =========================
+   7. ANIMACIONES
+========================= */
 @keyframes scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
 /* =========================
-   OVERLAY
+   8. OVERLAY
 ========================= */
 #overlay {
   position: fixed;
@@ -137,7 +157,7 @@ h1 {
 }
 
 /* =========================
-   REDES
+   9. REDES
 ========================= */
 .social {
   position: fixed;
@@ -171,7 +191,7 @@ h1 {
 }
 
 /* =========================
-   CURSOR PERSONALIZADO
+   10. CURSOR PERSONALIZADO
 ========================= */
 .cursor {
   width: 20px;
@@ -188,18 +208,4 @@ h1 {
 .cursor.active {
   transform: translate(-50%, -50%) scale(2);
   opacity: 0.6;
-}
-.logo {
-  font-size: 18px;
-  letter-spacing: 3px;
-  font-weight: 300;
-  text-transform: uppercase;
-}
-.track img.active {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
-  z-index: 1000;
-  cursor: zoom-out;
 }
