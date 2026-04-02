@@ -48,3 +48,20 @@ window.addEventListener("scroll", () => {
 
   track.style.animationDuration = speed + "s";
 });
+// =========================
+// TYPEWRITER
+// =========================
+const text = "TOMAS ANDRADA";
+const typingElement = document.getElementById("typing");
+
+let i = 0;
+
+function typeWriter() {
+  if (i < text.length) {
+    typingElement.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 80);
+  }
+}
+
+typeWriter();
