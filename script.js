@@ -78,3 +78,17 @@ function typeWriter() {
 }
 
 typeWriter();
+const images = document.querySelectorAll(".track img");
+
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    img.classList.toggle("zoomed");
+
+    // bloquear scroll cuando está abierta
+    if (img.classList.contains("zoomed")) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  });
+});
