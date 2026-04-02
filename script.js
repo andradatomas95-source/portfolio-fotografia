@@ -80,3 +80,42 @@ images.forEach(img => {
     }
   });
 });
+// =========================
+// DRAG CAROUSEL (PRO)
+// =========================
+let isDown = false;
+let startX;
+let scrollLeft = 0;
+
+const carousel = document.querySelector(".carousel");
+
+// mouse down
+carousel.addEventListener("mousedown", (e) => {
+  isDown = true;
+  startX = e.pageX;
+  scrollLeft = currentX;
+  carousel.style.cursor = "grabbing";
+});
+
+// mouse leave / up
+carousel.addEventListener("mouseleave", () => {
+  isDown = false;
+  carousel.style.cursor = "grab";
+});
+
+carousel.addEventListener("mouseup", () => {
+  isDown = false;
+  carousel.style.cursor = "grab";
+});
+
+// mover
+carousel.addEventListener("mousemove", (e) => {
+  if (!isDown) return;
+
+  e.preventDefault();
+  const x = e.pageX;
+  const walk = (x - startX) * 1.5;
+
+  currentX = scrollLeft + walk;
+  track.style.transform = `translateX(${currentX}px)`;
+});
