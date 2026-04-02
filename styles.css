@@ -7,6 +7,7 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   cursor: none;
+  overflow-x: hidden; /* evita scroll horizontal no deseado */
 }
 
 /* =========================
@@ -41,8 +42,8 @@ header {
 }
 
 @keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+  0%,50%,100% { opacity: 1; }
+  25%,75% { opacity: 0; }
 }
 
 /* =========================
@@ -61,24 +62,16 @@ header {
   object-position: top;
 }
 
-.hero-text {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-}
-
-.hero-text h2 {
-  font-size: 48px;
-  letter-spacing: 2px;
-}
-
 /* =========================
    4. CAROUSEL
 ========================= */
 .carousel {
   position: relative;
-  overflow: hidden;
+  overflow-x: auto; /* permite scroll horizontal */
+  overflow-y: hidden;
   padding: 20px 0;
+  white-space: nowrap;
+  scroll-behavior: smooth; /* scroll suave */
 }
 
 /* fade lateral */
@@ -110,7 +103,7 @@ header {
 }
 
 /* =========================
-   5. IMÁGENES (TODO JUNTO)
+   5. IMÁGENES
 ========================= */
 .track img {
   height: 80vh;
@@ -119,18 +112,16 @@ header {
   margin-right: 10px;
   cursor: pointer;
 
-  /* estilo */
   filter: grayscale(100%);
   transition: transform 0.4s ease, filter 0.4s;
 }
 
-/* hover */
 .track img:hover {
   transform: scale(1.15);
   filter: grayscale(0%);
 }
 
-/* zoom */
+/* overlay zoom */
 .track img.zoomed {
   position: fixed;
   top: 50%;
