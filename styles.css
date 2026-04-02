@@ -194,3 +194,9 @@ h1 {
   transform: translate(-50%, -50%) scale(2);
   opacity: 0.6;
 }
+.logo {
+  font-size: 18px;
+  letter-spacing: 3px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
