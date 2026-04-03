@@ -133,7 +133,7 @@ header {
   max-width:90%;
   max-height:90%;
   object-fit:contain;
-  cursor: zoom-out;
+  /* cursor: zoom-out;  <-- QUITAR esta línea */
   transition: transform 0.3s ease;
 }
 
