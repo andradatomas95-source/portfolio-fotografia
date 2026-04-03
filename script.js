@@ -15,16 +15,16 @@ function typeWriter() {
 window.onload = typeWriter;
 
 // =========================
-// QUOTES
+// QUOTES REALES
 // =========================
 const quotes = [
-  "La práctica hace al maestro. - Michael Jordan",
+  "El éxito es el resultado de la preparación. - Michael Jordan",
   "Nunca digas nunca. - LeBron James",
-  "El éxito no es accidental. - Kobe Bryant",
-  "Ganar es un hábito. - Bill Russell"
+  "El talento gana partidos, pero el trabajo en equipo y la inteligencia ganan campeonatos. - Michael Jordan",
+  "No hay atajos hacia cualquier lugar que valga la pena. - Kobe Bryant"
 ];
+
 const quoteEl = document.getElementById("quote");
-const courtEl = document.getElementById("court-bg");
 const quoteBoxEl = document.getElementById("quote-box");
 let quoteIndex = 0;
 
@@ -42,11 +42,9 @@ window.addEventListener('scroll', () => {
   const heroHeight = hero.offsetHeight;
   if(window.scrollY > heroHeight / 2){
     hero.classList.add('fade-out');
-    courtEl.classList.add('show');
     quoteBoxEl.classList.add('show');
   } else {
     hero.classList.remove('fade-out');
-    courtEl.classList.remove('show');
     quoteBoxEl.classList.remove('show');
   }
 });
