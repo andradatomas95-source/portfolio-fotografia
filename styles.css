@@ -1,4 +1,6 @@
-/* BASE */
+/* =========================
+   1. BASE
+========================= */
 body {
   margin: 0;
   background: #0a0a0a;
@@ -8,7 +10,9 @@ body {
   overflow-x: hidden;
 }
 
-/* HEADER */
+/* =========================
+   2. HEADER
+========================= */
 header {
   position: fixed;
   width: 100%;
@@ -17,6 +21,7 @@ header {
   backdrop-filter: blur(10px);
   z-index: 10;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -36,16 +41,39 @@ header {
 }
 
 @keyframes blink {
-  0%,50%,100%{opacity:1;}
-  25%,75%{opacity:0;}
+  0%,50%,100% { opacity:1; }
+  25%,75% { opacity:0; }
 }
 
-/* HERO */
+/* Quote box */
+#quote-box {
+  margin-top: 10px;
+  padding: 15px 25px;
+  background-image: url('basket_court.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  color: #fff;
+  max-width: 600px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#quote-box.show {
+  opacity: 1;
+}
+
+/* =========================
+   3. HERO
+========================= */
 .hero {
   position: sticky;
-  top: 0;
+  top:0;
   height: 100vh;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .hero img {
@@ -55,16 +83,16 @@ header {
   object-position: top;
 }
 
-/* CAROUSEL */
+/* =========================
+   4. CAROUSEL
+========================= */
 .carousel {
   position: relative;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
   padding: 20px 0;
-  white-space: nowrap;
-  scroll-behavior: smooth;
 }
 
+/* fade lateral */
 .carousel::before,
 .carousel::after {
   content: "";
@@ -77,23 +105,26 @@ header {
 }
 
 .carousel::before {
-  left: 0;
+  left:0;
   background: linear-gradient(to right, #0a0a0a, transparent);
 }
 
 .carousel::after {
-  right: 0;
+  right:0;
   background: linear-gradient(to left, #0a0a0a, transparent);
 }
 
+/* track */
 .track {
   display: flex;
   width: max-content;
 }
 
-/* IMÁGENES */
+/* =========================
+   5. IMÁGENES
+========================= */
 .track img {
-  height: 40vh; 
+  height: 40vh;
   width: auto;
   object-fit: contain;
   margin-right: 10px;
@@ -107,21 +138,19 @@ header {
   filter: grayscale(0%);
 }
 
-/* OVERLAY */
+/* Zoomed overlay */
 #overlay {
   position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  top:0; left:0;
+  width:100%; height:100%;
   background: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
   transition: opacity 0.3s ease;
-  z-index: 1000;
+  z-index:1000;
 }
 
 #overlay.show {
@@ -133,34 +162,32 @@ header {
   max-width:90%;
   max-height:90%;
   object-fit:contain;
-  /* cursor: zoom-out;  <-- QUITAR esta línea */
-  transition: transform 0.3s ease;
 }
 
-/* REDES */
+/* =========================
+   6. REDES
+========================= */
 .social {
   position: fixed;
   bottom: 20px;
-  left: 50%;
+  left:50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 10;
+  display:flex;
+  gap:12px;
+  z-index:10;
 }
 
 .social a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: white;
-  text-decoration: none;
-  opacity: 0.8;
-  font-weight: bold;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:white;
+  text-decoration:none;
+  opacity:0.8;
+  font-weight:bold;
 }
 
-.social a:hover {
-  opacity:1;
-}
+.social a:hover { opacity:1; }
 
 .social img {
   width:28px;
@@ -168,21 +195,22 @@ header {
   filter:none;
 }
 
-/* CURSOR = PELOTA DE BÁSQUET */
+/* =========================
+   7. CURSOR
+========================= */
 .cursor {
   width: 40px;
   height: 40px;
+  background-image: url('basketball_cursor.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
   position: fixed;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 999;
-  background-image: url('basketball.png'); /* tu imagen */
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
 }
 
 .cursor.active {
   transform: translate(-50%, -50%) scale(1.5);
-  transition: transform 0.2s ease;
 }
