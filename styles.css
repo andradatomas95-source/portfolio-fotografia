@@ -1,6 +1,4 @@
-/* =========================
-   1. BASE
-========================= */
+/* BASE */
 body {
   margin: 0;
   background: #0a0a0a;
@@ -10,9 +8,7 @@ body {
   overflow-x: hidden;
 }
 
-/* =========================
-   2. HEADER
-========================= */
+/* HEADER */
 header {
   position: fixed;
   width: 100%;
@@ -20,7 +16,6 @@ header {
   background: rgba(0,0,0,0.5);
   backdrop-filter: blur(10px);
   z-index: 10;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,9 +40,7 @@ header {
   25%,75%{opacity:0;}
 }
 
-/* =========================
-   3. HERO
-========================= */
+/* HERO */
 .hero {
   position: sticky;
   top: 0;
@@ -62,9 +55,7 @@ header {
   object-position: top;
 }
 
-/* =========================
-   4. CAROUSEL
-========================= */
+/* CAROUSEL */
 .carousel {
   position: relative;
   overflow-x: auto;
@@ -100,16 +91,13 @@ header {
   width: max-content;
 }
 
-/* =========================
-   5. IMÁGENES
-========================= */
+/* IMÁGENES */
 .track img {
   height: 40vh; 
   width: auto;
   object-fit: contain;
   margin-right: 10px;
   cursor: pointer;
-
   filter: grayscale(100%);
   transition: transform 0.4s ease, filter 0.4s;
 }
@@ -119,15 +107,13 @@ header {
   filter: grayscale(0%);
 }
 
-/* =========================
-   6. OVERLAY
-========================= */
+/* OVERLAY */
 #overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
   background: rgba(0,0,0,0.8);
   display: flex;
   justify-content: center;
@@ -139,21 +125,19 @@ header {
 }
 
 #overlay.show {
-  opacity: 1;
-  pointer-events: auto;
+  opacity:1;
+  pointer-events:auto;
 }
 
 #overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
+  max-width:90%;
+  max-height:90%;
+  object-fit:contain;
   cursor: zoom-out;
   transition: transform 0.3s ease;
 }
 
-/* =========================
-   7. REDES
-========================= */
+/* REDES */
 .social {
   position: fixed;
   bottom: 20px;
@@ -175,29 +159,30 @@ header {
 }
 
 .social a:hover {
-  opacity: 1;
+  opacity:1;
 }
 
 .social img {
-  width: 28px;
-  height: 28px;
-  filter: none;
+  width:28px;
+  height:28px;
+  filter:none;
 }
 
-/* =========================
-   8. CURSOR
-========================= */
+/* CURSOR = PELOTA DE BÁSQUET */
 .cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   position: fixed;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 999;
+  background-image: url('basketball.png'); /* tu imagen */
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
 }
 
 .cursor.active {
-  transform: translate(-50%, -50%) scale(2);
+  transform: translate(-50%, -50%) scale(1.5);
+  transition: transform 0.2s ease;
 }
