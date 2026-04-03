@@ -8,17 +8,13 @@
 <body>
 
 <header>
-  <h1 class="logo">
-    <span id="typing"></span>
-  </h1>
+  <h1 class="logo"><span id="typing"></span></h1>
 
   <!-- Fondo cancha completo -->
   <div id="court-bg"></div>
 
   <!-- Quotes debajo de la cancha -->
-  <div id="quote-box">
-    <span id="quote"></span>
-  </div>
+  <div id="quote-box"><span id="quote"></span></div>
 </header>
 
 <!-- HERO -->
@@ -36,7 +32,6 @@
       <img src="foto4.jpg">
       <img src="foto5.jpg">
       <img src="foto6.jpg">
-
       <!-- duplicadas para loop -->
       <img src="foto1.jpg">
       <img src="foto2.jpg">
@@ -63,6 +58,15 @@
 
 <!-- CURSOR -->
 <div class="cursor"></div>
+
+<!-- AUDIO DE FONDO -->
+<audio id="bg-music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
+<!-- BOTÓN DE PLAY/PAUSA -->
+<button id="music-btn">🎵</button>
 
 <script src="script.js"></script>
 </body>
