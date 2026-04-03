@@ -101,10 +101,10 @@ header {
 }
 
 /* =========================
-   5. IMÁGENES (Miniaturas grandes)
+   5. IMÁGENES
 ========================= */
 .track img {
-  height: 160vh;
+  height: 60vh; /* tamaño más razonable */
   width: auto;
   object-fit: contain;
   margin-right: 10px;
@@ -115,7 +115,7 @@ header {
 }
 
 .track img:hover {
-  transform: scale(1.15);
+  transform: scale(1.1);
   filter: grayscale(0%);
 }
 
@@ -127,6 +127,7 @@ header {
   z-index: 1000;
   filter: grayscale(0%);
   cursor: zoom-out;
+  transition: transform 0.4s ease;
 }
 
 /* =========================
