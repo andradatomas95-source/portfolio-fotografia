@@ -11,7 +11,7 @@ const cursor = document.querySelector(".cursor");
 // ==== Overlay y zoom ====
 images.forEach(img => {
   img.addEventListener("click", (e) => {
-    img.classList.add("zoomed");
+    img.classList.toggle("zoomed"); // toggle permite abrir/cerrar
     e.stopPropagation();
   });
 });
@@ -27,7 +27,7 @@ carousel.addEventListener("wheel", (e) => {
   carousel.scrollLeft += e.deltaY;
 });
 
-// ==== Fade out hero al hacer scroll ====
+// ==== Fade hero al hacer scroll ====
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
   const fadeStart = 0;
