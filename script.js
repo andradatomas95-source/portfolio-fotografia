@@ -1,74 +1,100 @@
+// =========================
 // TYPEWRITER
-const txt = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
-const el = document.getElementById("typing");
-let idx = 0;
-function typeWriter(){
-  if(idx < txt.length){
-    el.textContent += txt.charAt(idx++);
+// =========================
+const text = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
+const typingEl = document.getElementById("typing");
+let i = 0;
+
+function typeWriter() {
+  if(i < text.length){
+    typingEl.innerHTML += text.charAt(i);
+    i++;
     setTimeout(typeWriter, 100);
   }
 }
-typeWriter();
+window.onload = typeWriter;
 
-// HERO fade + show cancha & quotes
-const hero = document.querySelector(".hero");
-const court = document.getElementById("court-bg");
-const quoteBox = document.getElementById("quote-box");
+// =========================
+// QUOTES
+// =========================
 const quotes = [
-  "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
-  "No se trata de ser el mejor, se trata de ser mejor que ayer.",
-  "La fuerza no proviene de la capacidad física, sino de una voluntad indomable.",
-  "El dolor es temporal, la gloria es para siempre."
+  "La práctica hace al maestro. - Michael Jordan",
+  "Nunca digas nunca. - LeBron James",
+  "El éxito no es accidental. - Kobe Bryant",
+  "Ganar es un hábito. - Bill Russell"
 ];
-let qI = 0;
-function changeQuote(){
-  quoteBox.textContent = quotes[qI];
-  qI = (qI+1) % quotes.length;
-}
-changeQuote();
-setInterval(changeQuote, 5000);
+const quoteEl = document.getElementById("quote");
+const courtEl = document.getElementById("court-bg");
+const quoteBoxEl = document.getElementById("quote-box");
+let quoteIndex = 0;
 
-window.addEventListener("scroll", ()=>{
-  const opacity = Math.max(0, 1 - window.scrollY/300);
-  hero.style.opacity = opacity;
-  if(opacity < 1){
-    court.classList.add("show");
-    quoteBox.classList.add("show");
+function showQuotes() {
+  quoteEl.innerText = quotes[quoteIndex];
+  quoteIndex = (quoteIndex + 1) % quotes.length;
+}
+setInterval(showQuotes, 5000);
+window.addEventListener('scroll', () => {
+  let hero = document.querySelector('.hero');
+  if(window.scrollY > 20){
+    courtEl.classList.add('show');
+    quoteBoxEl.classList.add('show');
   } else {
-    court.classList.remove("show");
-    quoteBox.classList.remove("show");
+    courtEl.classList.remove('show');
+    quoteBoxEl.classList.remove('show');
   }
 });
 
-// SCROLL HORIZONTAL CON WHEEL
-const track = document.querySelector(".track");
-track.addEventListener("wheel", e => {
+// =========================
+// CAROUSEL WHEEL SCROLL
+// =========================
+const track = document.querySelector('.track');
+track.addEventListener('wheel', e => {
   e.preventDefault();
   track.scrollLeft += e.deltaY;
 });
 
-// OVERLAY ZOOM
-const overlay = document.getElementById("overlay");
-const overlayImg = document.getElementById("overlay-img");
-let zoomed = null;
-track.querySelectorAll("img").forEach(img=>{
-  img.addEventListener("click", ()=>{
-    overlay.classList.add("show");
+// =========================
+// IMAGE ZOOM
+// =========================
+const images = document.querySelectorAll('.track img');
+const overlayImg = document.getElementById('overlay-img');
+const overlay = document.getElementById('overlay');
+
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    // Cierra otras imágenes si hay
+    images.forEach(i => i.classList.remove('zoomed'));
     overlayImg.src = img.src;
+    img.classList.add('zoomed');
+    overlay.style.display = 'block';
   });
 });
-overlay.addEventListener("click", () => {
-  overlay.classList.remove("show");
+
+overlay.addEventListener('click', () => {
+  overlay.style.display = 'none';
+  images.forEach(i => i.classList.remove('zoomed'));
 });
 
-// CURSOR pelota
-const cursor = document.querySelector(".cursor");
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
+// =========================
+// CURSOR
+// =========================
+const cursor = document.querySelector('.cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
 });
 
-// MÚSICA
-const musicBtn = document.getElementById("music-btn");
-const music = document.getElementById("music");
-musicBtn.addEventListener("click", ()=> music.paused ? music.play() : music.pause());
+// =========================
+// MUSIC
+// =========================
+const musicBtn = document.getElementById('music-btn');
+const music = document.getElementById('music');
+musicBtn.addEventListener('click', () => {
+  if(music.paused){
+    music.play();
+    musicBtn.innerText = '❚❚';
+  } else {
+    music.pause();
+    musicBtn.innerText = '♫';
+  }
+});
