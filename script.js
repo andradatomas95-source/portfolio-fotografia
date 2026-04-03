@@ -1,90 +1,74 @@
-// =========================
 // TYPEWRITER
-// =========================
-const text = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
-const typingEl = document.getElementById("typing");
-let i = 0;
-
-function typeWriter() {
-  if(i < text.length){
-    typingEl.innerHTML += text.charAt(i);
-    i++;
+const txt = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
+const el = document.getElementById("typing");
+let idx = 0;
+function typeWriter(){
+  if(idx < txt.length){
+    el.textContent += txt.charAt(idx++);
     setTimeout(typeWriter, 100);
   }
 }
 typeWriter();
 
-// =========================
-// QUOTES
-// =========================
-const quotes = [
-  "El talento gana partidos, pero el trabajo en equipo gana campeonatos. - Michael Jordan",
-  "No puedes poner un límite a nada. Cuanto más sueñas, más lejos llegas. - Michael Phelps",
-  "Nunca digas nunca. - Wayne Gretzky",
-  "El éxito es la suma de pequeños esfuerzos repetidos día tras día. - Robert Collier"
-];
-
+// HERO fade + show cancha & quotes
+const hero = document.querySelector(".hero");
+const court = document.getElementById("court-bg");
 const quoteBox = document.getElementById("quote-box");
-const courtBg = document.getElementById("court-bg");
-let quoteIndex = 0;
-
-function showQuote() {
-  quoteBox.textContent = quotes[quoteIndex];
-  quoteBox.classList.add("show");
-  courtBg.classList.add("show");
-  quoteIndex = (quoteIndex + 1) % quotes.length;
+const quotes = [
+  "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+  "No se trata de ser el mejor, se trata de ser mejor que ayer.",
+  "La fuerza no proviene de la capacidad física, sino de una voluntad indomable.",
+  "El dolor es temporal, la gloria es para siempre."
+];
+let qI = 0;
+function changeQuote(){
+  quoteBox.textContent = quotes[qI];
+  qI = (qI+1) % quotes.length;
 }
-setInterval(showQuote, 5000);
-showQuote();
+changeQuote();
+setInterval(changeQuote, 5000);
 
-// =========================
-// SCROLL CAROUSEL CON WHEEL
-// =========================
+window.addEventListener("scroll", ()=>{
+  const opacity = Math.max(0, 1 - window.scrollY/300);
+  hero.style.opacity = opacity;
+  if(opacity < 1){
+    court.classList.add("show");
+    quoteBox.classList.add("show");
+  } else {
+    court.classList.remove("show");
+    quoteBox.classList.remove("show");
+  }
+});
+
+// SCROLL HORIZONTAL CON WHEEL
 const track = document.querySelector(".track");
-
-track.addEventListener("wheel", (e) => {
+track.addEventListener("wheel", e => {
   e.preventDefault();
   track.scrollLeft += e.deltaY;
 });
 
-// =========================
-// ZOOM IMAGEN
-// =========================
-let currentZoomed = null;
-
-track.querySelectorAll("img").forEach(img => {
-  img.addEventListener("click", () => {
-    if(currentZoomed) {
-      currentZoomed.classList.remove("zoomed");
-    }
-    if(currentZoomed !== img){
-      img.classList.add("zoomed");
-      currentZoomed = img;
-    } else {
-      currentZoomed = null;
-    }
+// OVERLAY ZOOM
+const overlay = document.getElementById("overlay");
+const overlayImg = document.getElementById("overlay-img");
+let zoomed = null;
+track.querySelectorAll("img").forEach(img=>{
+  img.addEventListener("click", ()=>{
+    overlay.classList.add("show");
+    overlayImg.src = img.src;
   });
 });
+overlay.addEventListener("click", () => {
+  overlay.classList.remove("show");
+});
 
-// =========================
-// CURSOR MOVIMIENTO
-// =========================
+// CURSOR pelota
 const cursor = document.querySelector(".cursor");
 document.addEventListener("mousemove", e => {
   cursor.style.left = e.clientX + "px";
   cursor.style.top = e.clientY + "px";
 });
 
-// =========================
 // MÚSICA
-// =========================
 const musicBtn = document.getElementById("music-btn");
 const music = document.getElementById("music");
-
-musicBtn.addEventListener("click", () => {
-  if(music.paused){
-    music.play();
-  } else {
-    music.pause();
-  }
-});
+musicBtn.addEventListener("click", ()=> music.paused ? music.play() : music.pause());
