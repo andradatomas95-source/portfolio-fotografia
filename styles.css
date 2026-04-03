@@ -182,7 +182,7 @@ header {
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 999;
-  background: url('basket_ball_cursor.png') no-repeat center center;
+  background: url('basketball_cursor.png') no-repeat center center;
   background-size: contain;
 }
 
