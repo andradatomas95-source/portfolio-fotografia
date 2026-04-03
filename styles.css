@@ -92,7 +92,6 @@ header {
   display: flex;
   width: max-content;
   cursor: grab;
-  scroll-behavior: smooth;
 }
 
 .track img {
