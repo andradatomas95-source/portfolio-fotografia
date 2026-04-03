@@ -1,91 +1,90 @@
+// =========================
 // TYPEWRITER
+// =========================
 const text = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
 const typingEl = document.getElementById("typing");
-let i=0;
-function typeWriter(){
-  if(i<text.length){
-    typingEl.textContent += text.charAt(i);
+let i = 0;
+
+function typeWriter() {
+  if(i < text.length){
+    typingEl.innerHTML += text.charAt(i);
     i++;
     setTimeout(typeWriter, 100);
   }
 }
 typeWriter();
 
-// HERO FADE & COURT + QUOTES
-const hero = document.querySelector(".hero");
-const court = document.getElementById("court-bg");
-const quoteBox = document.getElementById("quote-box");
+// =========================
+// QUOTES
+// =========================
 const quotes = [
-  "El talento gana partidos, pero el trabajo en equipo y la inteligencia gana campeonatos. – Michael Jordan",
-  "No hay secretos para el éxito. – Michael Jordan",
-  "El esfuerzo supera al talento cuando el talento no se esfuerza. – Kevin Durant"
+  "El talento gana partidos, pero el trabajo en equipo gana campeonatos. - Michael Jordan",
+  "No puedes poner un límite a nada. Cuanto más sueñas, más lejos llegas. - Michael Phelps",
+  "Nunca digas nunca. - Wayne Gretzky",
+  "El éxito es la suma de pequeños esfuerzos repetidos día tras día. - Robert Collier"
 ];
-let qIndex=0;
-const quoteSpan = document.getElementById("quote");
-quoteSpan.textContent = quotes[qIndex];
-setInterval(()=>{
-  qIndex=(qIndex+1)%quotes.length;
-  quoteSpan.textContent=quotes[qIndex];
-},5000);
 
-window.addEventListener("scroll", ()=>{
-  let opacity = 1 - window.scrollY/300;
-  hero.style.opacity = opacity<0?0:opacity;
-  if(opacity<1){
-    court.classList.add("show");
-    quoteBox.classList.add("show");
-  } else {
-    court.classList.remove("show");
-    quoteBox.classList.remove("show");
-  }
-});
+const quoteBox = document.getElementById("quote-box");
+const courtBg = document.getElementById("court-bg");
+let quoteIndex = 0;
 
-// CARRUSEL SCROLL WHEEL
+function showQuote() {
+  quoteBox.textContent = quotes[quoteIndex];
+  quoteBox.classList.add("show");
+  courtBg.classList.add("show");
+  quoteIndex = (quoteIndex + 1) % quotes.length;
+}
+setInterval(showQuote, 5000);
+showQuote();
+
+// =========================
+// SCROLL CAROUSEL CON WHEEL
+// =========================
 const track = document.querySelector(".track");
-track.addEventListener("wheel", (e)=>{
+
+track.addEventListener("wheel", (e) => {
   e.preventDefault();
   track.scrollLeft += e.deltaY;
 });
 
-// IMAGES OVERLAY ZOOM
-const overlay = document.getElementById("overlay");
-const overlayImg = document.getElementById("overlay-img");
-let zoomedImg = null;
+// =========================
+// ZOOM IMAGEN
+// =========================
+let currentZoomed = null;
 
-track.querySelectorAll("img").forEach(img=>{
-  img.addEventListener("click", ()=>{
-    if(zoomedImg) {
-      zoomedImg.classList.remove("zoomed");
-      overlay.style.display="none";
-      zoomedImg=null;
+track.querySelectorAll("img").forEach(img => {
+  img.addEventListener("click", () => {
+    if(currentZoomed) {
+      currentZoomed.classList.remove("zoomed");
     }
-    img.classList.add("zoomed");
-    overlay.style.display="block";
-    overlayImg.src=img.src;
-    zoomedImg=img;
+    if(currentZoomed !== img){
+      img.classList.add("zoomed");
+      currentZoomed = img;
+    } else {
+      currentZoomed = null;
+    }
   });
 });
 
-overlay.addEventListener("click", ()=>{
-  if(zoomedImg){
-    zoomedImg.classList.remove("zoomed");
-    overlay.style.display="none";
-    zoomedImg=null;
-  }
+// =========================
+// CURSOR MOVIMIENTO
+// =========================
+const cursor = document.querySelector(".cursor");
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
 });
 
+// =========================
 // MÚSICA
-const music = document.getElementById("bg-music");
+// =========================
 const musicBtn = document.getElementById("music-btn");
-let playing=false;
-musicBtn.addEventListener("click", ()=>{
-  if(!playing){
+const music = document.getElementById("music");
+
+musicBtn.addEventListener("click", () => {
+  if(music.paused){
     music.play();
-    musicBtn.textContent="⏸️";
-    playing=true;
   } else {
     music.pause();
-    musicBtn.textContent="🎵";
-    playing=false;
   }
 });
