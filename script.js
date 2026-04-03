@@ -40,19 +40,24 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// CAROUSEL INFINITE WHEEL SCROLL
+// CAROUSEL SCROLL AUTOMÁTICO
 const track = document.querySelector('.track');
-track.addEventListener('wheel', e => {
-  e.preventDefault();
-  track.scrollLeft += e.deltaY;
+let scrollSpeed = 0.5; // píxeles por frame
 
+function animateScroll(){
+  track.scrollLeft += scrollSpeed;
   // Loop infinito
   if(track.scrollLeft >= track.scrollWidth / 2){
     track.scrollLeft -= track.scrollWidth / 2;
   }
-  if(track.scrollLeft <= 0){
-    track.scrollLeft += track.scrollWidth / 2;
-  }
+  requestAnimationFrame(animateScroll);
+}
+animateScroll();
+
+// WHEEL SCROLL
+track.addEventListener('wheel', e => {
+  e.preventDefault();
+  track.scrollLeft += e.deltaY;
 });
 
 // IMAGE ZOOM
