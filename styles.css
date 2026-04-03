@@ -122,7 +122,7 @@ header {
 }
 
 .track img {
-  height: 40vh; /* miniaturas más pequeñas */
+  height: 65vh; /* miniaturas más pequeñas */
   width: auto;
   object-fit: contain;
   margin-right: 10px;
