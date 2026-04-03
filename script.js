@@ -2,7 +2,6 @@
 const text = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
 const typingElement = document.getElementById("typing");
 let i = 0;
-
 function typeWriter() {
   if(i < text.length){
     typingElement.innerHTML += text.charAt(i);
@@ -20,11 +19,10 @@ const quotes = [
   "El talento gana partidos, pero el trabajo en equipo y la inteligencia gana campeonatos. – Michael Jordan",
   "El dolor es temporal, la gloria es para siempre. – Lance Armstrong"
 ];
-
 const quoteElement = document.getElementById("quote");
+const court = document.getElementById("court-bg");
 const quoteBox = document.getElementById("quote-box");
 let quoteIndex = 0;
-
 function changeQuote(){
   quoteElement.textContent = quotes[quoteIndex];
   quoteIndex = (quoteIndex + 1) % quotes.length;
@@ -32,15 +30,17 @@ function changeQuote(){
 changeQuote();
 setInterval(changeQuote, 5000);
 
-// Hero fade + quote show/hide
+// Hero fade + mostrar cancha + quotes
 const hero = document.querySelector(".hero");
 window.addEventListener("scroll", ()=>{
   let opacity = 1 - window.scrollY/300;
   hero.style.opacity = opacity < 0 ? 0 : opacity;
 
   if(opacity < 1){
+    court.classList.add("show");
     quoteBox.classList.add("show");
   } else {
+    court.classList.remove("show");
     quoteBox.classList.remove("show");
   }
 });
@@ -52,7 +52,7 @@ track.addEventListener("wheel", (e)=>{
   track.scrollLeft += e.deltaY;
 });
 
-// Overlay zoom
+// Overlay zoom (una sola imagen a la vez)
 const overlay = document.getElementById("overlay");
 const overlayImg = document.getElementById("overlay-img");
 let currentZoomed = null;
@@ -71,7 +71,7 @@ overlay.addEventListener("click", ()=>{
   currentZoomed = null;
 });
 
-// Custom cursor
+// Cursor personalizado
 const cursor = document.querySelector(".cursor");
 document.addEventListener("mousemove", e=>{
   cursor.style.left = e.clientX + "px";
