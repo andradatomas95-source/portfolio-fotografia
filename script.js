@@ -1,42 +1,37 @@
-// Typewriter
+// TYPEWRITER
 const text = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
-const typingElement = document.getElementById("typing");
-let i = 0;
-function typeWriter() {
-  if(i < text.length){
-    typingElement.innerHTML += text.charAt(i);
+const typingEl = document.getElementById("typing");
+let i=0;
+function typeWriter(){
+  if(i<text.length){
+    typingEl.textContent += text.charAt(i);
     i++;
     setTimeout(typeWriter, 100);
   }
 }
 typeWriter();
 
-// Quotes
-const quotes = [
-  "El éxito es la suma de pequeños esfuerzos repetidos día tras día. – Robert Collier",
-  "La fuerza no proviene de la capacidad física, sino de una voluntad indomable. – Mahatma Gandhi",
-  "No se trata de ser el mejor, se trata de ser mejor que ayer. – Desconocido",
-  "El talento gana partidos, pero el trabajo en equipo y la inteligencia gana campeonatos. – Michael Jordan",
-  "El dolor es temporal, la gloria es para siempre. – Lance Armstrong"
-];
-const quoteElement = document.getElementById("quote");
+// HERO FADE & COURT + QUOTES
+const hero = document.querySelector(".hero");
 const court = document.getElementById("court-bg");
 const quoteBox = document.getElementById("quote-box");
-let quoteIndex = 0;
-function changeQuote(){
-  quoteElement.textContent = quotes[quoteIndex];
-  quoteIndex = (quoteIndex + 1) % quotes.length;
-}
-changeQuote();
-setInterval(changeQuote, 5000);
+const quotes = [
+  "El talento gana partidos, pero el trabajo en equipo y la inteligencia gana campeonatos. – Michael Jordan",
+  "No hay secretos para el éxito. – Michael Jordan",
+  "El esfuerzo supera al talento cuando el talento no se esfuerza. – Kevin Durant"
+];
+let qIndex=0;
+const quoteSpan = document.getElementById("quote");
+quoteSpan.textContent = quotes[qIndex];
+setInterval(()=>{
+  qIndex=(qIndex+1)%quotes.length;
+  quoteSpan.textContent=quotes[qIndex];
+},5000);
 
-// Hero fade + mostrar cancha + quotes
-const hero = document.querySelector(".hero");
 window.addEventListener("scroll", ()=>{
   let opacity = 1 - window.scrollY/300;
-  hero.style.opacity = opacity < 0 ? 0 : opacity;
-
-  if(opacity < 1){
+  hero.style.opacity = opacity<0?0:opacity;
+  if(opacity<1){
     court.classList.add("show");
     quoteBox.classList.add("show");
   } else {
@@ -45,35 +40,52 @@ window.addEventListener("scroll", ()=>{
   }
 });
 
-// Carrusel scroll con mouse
+// CARRUSEL SCROLL WHEEL
 const track = document.querySelector(".track");
 track.addEventListener("wheel", (e)=>{
   e.preventDefault();
   track.scrollLeft += e.deltaY;
 });
 
-// Overlay zoom (una sola imagen a la vez)
+// IMAGES OVERLAY ZOOM
 const overlay = document.getElementById("overlay");
 const overlayImg = document.getElementById("overlay-img");
-let currentZoomed = null;
+let zoomedImg = null;
 
-document.querySelectorAll(".track img").forEach(img=>{
+track.querySelectorAll("img").forEach(img=>{
   img.addEventListener("click", ()=>{
-    if(currentZoomed) return;
-    overlay.classList.add("show");
-    overlayImg.src = img.src;
-    currentZoomed = img;
+    if(zoomedImg) {
+      zoomedImg.classList.remove("zoomed");
+      overlay.style.display="none";
+      zoomedImg=null;
+    }
+    img.classList.add("zoomed");
+    overlay.style.display="block";
+    overlayImg.src=img.src;
+    zoomedImg=img;
   });
 });
 
 overlay.addEventListener("click", ()=>{
-  overlay.classList.remove("show");
-  currentZoomed = null;
+  if(zoomedImg){
+    zoomedImg.classList.remove("zoomed");
+    overlay.style.display="none";
+    zoomedImg=null;
+  }
 });
 
-// Cursor personalizado
-const cursor = document.querySelector(".cursor");
-document.addEventListener("mousemove", e=>{
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
+// MÚSICA
+const music = document.getElementById("bg-music");
+const musicBtn = document.getElementById("music-btn");
+let playing=false;
+musicBtn.addEventListener("click", ()=>{
+  if(!playing){
+    music.play();
+    musicBtn.textContent="⏸️";
+    playing=true;
+  } else {
+    music.pause();
+    musicBtn.textContent="🎵";
+    playing=false;
+  }
 });
