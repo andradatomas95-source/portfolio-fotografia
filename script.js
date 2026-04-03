@@ -1,10 +1,7 @@
-// =========================
 // TYPEWRITER
-// =========================
 const text = "TOMÁS ANDRADA - FOTOGRAFÍA DEPORTIVA";
 const typingEl = document.getElementById("typing");
 let i = 0;
-
 function typeWriter() {
   if(i < text.length){
     typingEl.innerHTML += text.charAt(i);
@@ -14,29 +11,23 @@ function typeWriter() {
 }
 window.onload = typeWriter;
 
-// =========================
 // QUOTES REALES
-// =========================
 const quotes = [
   "El éxito es el resultado de la preparación. - Michael Jordan",
   "Nunca digas nunca. - LeBron James",
   "El talento gana partidos, pero el trabajo en equipo y la inteligencia ganan campeonatos. - Michael Jordan",
   "No hay atajos hacia cualquier lugar que valga la pena. - Kobe Bryant"
 ];
-
 const quoteEl = document.getElementById("quote");
 const quoteBoxEl = document.getElementById("quote-box");
 let quoteIndex = 0;
-
 function showQuotes() {
   quoteEl.innerText = quotes[quoteIndex];
   quoteIndex = (quoteIndex + 1) % quotes.length;
 }
 setInterval(showQuotes, 5000);
 
-// =========================
 // HERO FADE OUT
-// =========================
 const hero = document.querySelector('.hero');
 window.addEventListener('scroll', () => {
   const heroHeight = hero.offsetHeight;
@@ -49,18 +40,22 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// =========================
-// CAROUSEL WHEEL SCROLL
-// =========================
+// CAROUSEL INFINITE WHEEL SCROLL
 const track = document.querySelector('.track');
 track.addEventListener('wheel', e => {
   e.preventDefault();
   track.scrollLeft += e.deltaY;
+
+  // Loop infinito
+  if(track.scrollLeft >= track.scrollWidth / 2){
+    track.scrollLeft -= track.scrollWidth / 2;
+  }
+  if(track.scrollLeft <= 0){
+    track.scrollLeft += track.scrollWidth / 2;
+  }
 });
 
-// =========================
 // IMAGE ZOOM
-// =========================
 const images = document.querySelectorAll('.track img');
 const overlayImg = document.getElementById('overlay-img');
 const overlay = document.getElementById('overlay');
@@ -79,18 +74,14 @@ overlay.addEventListener('click', () => {
   images.forEach(i => i.classList.remove('zoomed'));
 });
 
-// =========================
 // CURSOR
-// =========================
 const cursor = document.querySelector('.cursor');
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
 });
 
-// =========================
 // MUSIC
-// =========================
 const musicBtn = document.getElementById('music-btn');
 const music = document.getElementById('music');
 musicBtn.addEventListener('click', () => {
