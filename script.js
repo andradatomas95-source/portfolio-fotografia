@@ -33,12 +33,19 @@ function showQuotes() {
   quoteIndex = (quoteIndex + 1) % quotes.length;
 }
 setInterval(showQuotes, 5000);
+
+// =========================
+// HERO FADE OUT
+// =========================
+const hero = document.querySelector('.hero');
 window.addEventListener('scroll', () => {
-  let hero = document.querySelector('.hero');
-  if(window.scrollY > 20){
+  const heroHeight = hero.offsetHeight;
+  if(window.scrollY > heroHeight / 2){
+    hero.classList.add('fade-out');
     courtEl.classList.add('show');
     quoteBoxEl.classList.add('show');
   } else {
+    hero.classList.remove('fade-out');
     courtEl.classList.remove('show');
     quoteBoxEl.classList.remove('show');
   }
@@ -62,7 +69,6 @@ const overlay = document.getElementById('overlay');
 
 images.forEach(img => {
   img.addEventListener('click', () => {
-    // Cierra otras imágenes si hay
     images.forEach(i => i.classList.remove('zoomed'));
     overlayImg.src = img.src;
     img.classList.add('zoomed');
